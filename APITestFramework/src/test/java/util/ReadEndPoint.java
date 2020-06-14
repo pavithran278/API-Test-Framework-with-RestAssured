@@ -24,8 +24,4 @@ public class ReadEndPoint {
         return  value;
     }
 
-    public static String getEndPoint(String path) {
-        String Endpoint = getValue("URI").concat(getValue(path));
-        return Endpoint;
-    }
 }

@@ -30,4 +30,10 @@ public class RestAssuredExtension extends TestHook {
         response = Request.post(registrationEndpoint);
         return response;
     }
+
+    public static Response PostOps(String registrationEndpoint, String json) {
+        Request.body(json);
+        response = Request.post(registrationEndpoint);
+        return response;
+    }
 }

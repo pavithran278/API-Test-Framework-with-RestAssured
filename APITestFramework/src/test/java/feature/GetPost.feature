@@ -27,3 +27,15 @@ Feature: Testing REST API
       | Name                 | EmailId       | UserName   | Password   | status | SuccessCode   | ExpectedSuccessValue | FailureCode | ExpectedFailureValue        |
       | "FirstName LastName" | "ppp@xxx.com" | "UserName" | "Password" | 200    | "SuccessCode" | "OPERATION_SUCCESS"  | "fault"     | "FAULT_USER_ALREADY_EXISTS" |
 
+  Scenario: Verify Customer registration with Json file
+    Given for given "Customer.json" create registration
+    When the GET request returns status 200
+    Then verify response with "SuccessCode" as "OPERATION_SUCCESS" or "fault" as "FAULT_USER_ALREADY_EXISTS"
+
+  Scenario Outline: Verify Customer registration with Json file
+    Given for given <jsonFile> create registration
+    When the GET request returns status <status>
+    Then verify response with <SuccessCode> as <ExpectedSuccessValue> or <FailureCode> as <ExpectedFailureValue>
+    Examples:
+      | jsonFile        | status | SuccessCode   | ExpectedSuccessValue | FailureCode | ExpectedFailureValue        |
+      | "Customer.json" | 200    | "SuccessCode" | "OPERATION_SUCCESS"  | "fault"     | "FAULT_USER_ALREADY_EXISTS" |

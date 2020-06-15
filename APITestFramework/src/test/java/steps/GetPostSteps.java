@@ -5,12 +5,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseOptions;
-import io.restassured.response.ValidatableResponse;
+import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
 import util.ReadEndPoint;
+import util.ReadJsonString;
 import util.RestAssuredExtension;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,7 +51,7 @@ public class GetPostSteps {
         Json.put("UserName", UserName);
         Json.put("Password", Password);
         Json.put("Email", EmailId);
-        response = RestAssuredExtension.PostOps(RegistrationEndpoint,Json);
+        response = RestAssuredExtension.PostOps(RegistrationEndpoint,Json.toString());
     }
 
     @Then("verify response with {string} as {string} or {string} as {string}")
@@ -62,4 +66,12 @@ public class GetPostSteps {
             assertFalse(true);
         }
     }
+
+    @Given("for given {string} create registration")
+    public void forGivenCreateRegistration(String jsonFile) {
+        String Json = ReadJsonString.getJsonString(jsonFile);
+        response = RestAssuredExtension.PostOps(RegistrationEndpoint, Json);
+
+    }
+
 }

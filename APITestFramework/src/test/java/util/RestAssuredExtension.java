@@ -12,16 +12,17 @@ import static io.restassured.RestAssured.given;
 public class RestAssuredExtension extends TestHook {
     static RequestSpecification Request;
     static Response response;
+
     public RestAssuredExtension() {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setContentType(ContentType.JSON);
-        RequestSpecification requestSpec=builder.build();
+        RequestSpecification requestSpec = builder.build();
         Request = given().spec(requestSpec);
     }
 
-    public static Response GetOps(String url, String parameter, String value){
-        Request.queryParam(parameter,value);
-        response=Request.get(url);
+    public static Response GetOps(String url, String parameter, String value) {
+        Request.queryParam(parameter, value);
+        response = Request.get(url);
         return response;
     }
 

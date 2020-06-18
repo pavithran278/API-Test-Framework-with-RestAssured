@@ -7,11 +7,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ReadEndPoint {
-    public static String getValue(String key){
-        Properties prop=new Properties();
+    public static String getValue(String key) {
+        Properties prop = new Properties();
         InputStream is = null;
         try {
-            is = new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\EndPoint.config");
+            is = new FileInputStream(System.getProperty("user.dir") + "\\src\\test\\resources\\EndPoint.config");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -20,8 +20,8 @@ public class ReadEndPoint {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String value=prop.getProperty(key);
-        return  value;
+        String value = prop.getProperty(key);
+        return value;
     }
 
 }

@@ -3,14 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.example</groupId>
     <artifactId>APITesting</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -27,6 +25,8 @@
                 <version>3.0.0-M4</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
             </plugin>
             <plugin>
@@ -43,7 +43,7 @@
                         <configuration>
                             <projectName>API Testing</projectName>
                             <outputDirectory>${project.basedir}/Reports</outputDirectory>
-                            <inputDirectory>${project.basedir}/Reports</inputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
                                 <param>*.json</param>
                             </jsonFiles>
@@ -84,5 +84,4 @@
             <version>2.6</version>
         </dependency>
     </dependencies>
-
 </project>

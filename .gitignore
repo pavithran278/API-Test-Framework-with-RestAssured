@@ -1,3 +1,4 @@
 # ignore the .idea and target directories
 .idea/
 target/
+target1/

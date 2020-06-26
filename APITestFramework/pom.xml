@@ -24,6 +24,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
+                    <includes>
+                        <include>**/TestR*.class</include>
+                    </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <parallel>methods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
